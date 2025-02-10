@@ -1,0 +1,36 @@
+✅ Key Takeaways on `define in Verilog
+1️⃣ Preprocessor Directive:
+
+`define is a macro, processed before compilation, not during simulation.
+2️⃣ Global Scope:
+
+Once defined, it applies to the entire file and cannot be redefined inside a module.
+3️⃣ No Direct Overriding Inside a Module:
+
+You cannot override `define inside a module, as it is expanded before synthesis/simulation.
+4️⃣ Use `undef to Remove a Macro:
+
+verilog
+`define WIDTH 8  
+`undef WIDTH  
+`define WIDTH 16  
+
+Must be done before using the macro in the file.
+5️⃣ Alternative: Use Parameters for Overriding:
+
+Unlike `define, parameters can be overridden per module instance.
+
+verilog
+module test #(parameter WIDTH = 8);  
+6️⃣ No Runtime Modifications:
+
+`define macros are fixed at compile-time and cannot be changed dynamically during simulation.
+7️⃣ File Scope (No Hierarchical Definition):
+
+A macro defined in one file is not automatically available in another file unless included using `include.
+8️⃣ Better for Constants, Not Configurations:
+
+Use define for **constants** and parameter for configurable values.
+💡 Best Practice:
+✅ Use `define for global constants (e.g., opcode values, fixed sizes).
+✅ Use parameters when you need flexibility at the module level.
